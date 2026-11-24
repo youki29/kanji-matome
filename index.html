@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>漢字まとめ｜書き取り・読み取り 601〜800</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7F4; --sheet:#FFFFFF; --ink:#2A2230; --sub:#6E6372; --rule:#E8DCDC;
+  --marker:#FFE45C; --red:#C8283C; --redsheet:#E0404F; --accent:#B23A52; --head:#FBEDEF;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#16131A; --sheet:#1F1B24; --ink:#EEE8EF; --sub:#AEA3B1; --rule:#3A3140;
+    --marker:#6B5A12; --red:#FF7A8A; --redsheet:#B8303E; --accent:#F08AA0; --head:#2B2230;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#16131A; --sheet:#1F1B24; --ink:#EEE8EF; --sub:#AEA3B1; --rule:#3A3140;
+  --marker:#6B5A12; --red:#FF7A8A; --redsheet:#B8303E; --accent:#F08AA0; --head:#2B2230;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  font-size:15px;line-height:1.7;-webkit-text-size-adjust:100%;padding-bottom:env(safe-area-inset-bottom,0px)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+header.top{position:sticky;top:0;z-index:20;background:var(--sheet);border-bottom:1px solid var(--rule);padding-top:env(safe-area-inset-top,0px)}
+.bar{max-width:1000px;margin:0 auto;padding:8px 16px}
+.brand{font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:900;font-size:1.05rem;line-height:1.3;margin:0}
+.brand small{display:block;font-weight:700;font-size:.7rem;color:var(--sub)}
+nav.tabs{max-width:1000px;margin:0 auto;display:flex;gap:2px;padding:0 10px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{flex:0 0 auto;border:0;background:none;padding:8px 10px;color:var(--sub);font-weight:700;font-size:.85rem;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+main{max-width:1000px;margin:0 auto;padding:12px 16px 80px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 10px}
+.chip{border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:4px 12px;font-size:.85rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sheetbtn[aria-pressed="true"]{background:var(--redsheet);color:#fff;border-color:var(--redsheet)}
+input[type=search]{flex:1;min-width:150px;border:1px solid var(--rule);background:var(--sheet);border-radius:8px;padding:5px 10px}
+.hint,.count{color:var(--sub);font-size:.8rem;margin:0 0 6px}
+h2{font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-size:1.15rem;margin:22px 0 4px}
+h2 small{font-size:.75rem;color:var(--sub);margin-left:.5em;font-family:"Zen Kaku Gothic New",sans-serif}
+.how{color:var(--sub);font-size:.8rem;margin:0 0 8px}
+table{border-collapse:collapse;width:100%;background:var(--sheet);margin-bottom:8px}
+th,td{border:1px solid var(--rule);padding:7px 10px;vertical-align:top;text-align:left}
+thead th{background:var(--head);font-size:.8rem}
+td.n{width:4.6em;white-space:nowrap;color:var(--accent);font-weight:700;font-size:.8rem}
+td.n label{display:flex;align-items:center;gap:5px;cursor:pointer}
+td.n input{width:15px;height:15px;accent-color:var(--accent);margin:0}
+td.a{width:8.5em;font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:900;font-size:1.1rem}
+td.m{width:34%;font-size:.85rem}
+td.m .note{display:block;color:var(--sub);font-size:.78rem}
+.q b{font-weight:900;color:var(--red);letter-spacing:.02em}
+.q u{text-decoration:none;border-bottom:2px solid var(--red);font-weight:700}
+.pw{font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:900;font-size:1.1rem}
+.rel{color:var(--accent);font-weight:900;text-align:center;width:2.4em}
+tr.done td:not(.n){opacity:.45}
+mark{background:linear-gradient(transparent 55%,var(--marker) 55%);color:var(--red);padding:0 .05em}
+body.sheet mark{background:var(--redsheet);color:transparent;cursor:pointer;user-select:none;border-radius:2px}
+body.sheet mark.open{background:linear-gradient(transparent 55%,var(--marker) 55%);color:var(--red)}
+.empty{padding:24px;text-align:center;color:var(--sub)}
+@media (max-width:720px){
+  table,tbody,tr,td{display:block}
+  thead{display:none}
+  table{background:transparent}
+  tr{display:grid;grid-template-columns:4.4em 1fr;background:var(--sheet);border:1px solid var(--rule);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  td{border:0;padding:7px 10px;width:auto!important}
+  td.q{grid-column:2}
+  td.a{grid-column:1/-1;border-top:1px dashed var(--rule);padding-left:calc(4.4em + 10px);display:flex;gap:12px;align-items:baseline}
+  td.m{grid-column:1/-1;padding-top:0;padding-left:calc(4.4em + 10px)}
+  tr.p{grid-template-columns:2.8em auto 1.8em 1fr;align-items:baseline}
+  tr.p td.q{grid-column:auto;white-space:nowrap}
+  tr.p td.a{grid-column:auto;border-top:0;padding-left:4px;display:block}
+  tr.p td.rel{text-align:center;padding:7px 0}
+  tr.p td.m{padding-left:calc(2.8em + 10px)}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="bar"><h1 class="brand"><small>漢字 601〜800・チェック問題</small>漢字まとめ（書き取り・読み取り）</h1></div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+<main>
+  <div class="tools">
+    <button class="chip sheetbtn" id="sheetBtn" aria-pressed="false">赤シート</button>
+    <button class="chip" id="undone" aria-pressed="false">未チェックだけ</button>
+    <input type="search" id="q" placeholder="漢字・読み・意味で検索">
+  </div>
+  <p class="hint">赤シートをオンにすると答えが隠れます。隠れた所をタップすると見えます。覚えた問題は番号の横にチェック。</p>
+  <p class="count" id="count"></p>
+  <div id="out"></div>
+</main>
+<script src="data.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const store = {
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RE = /\{(.+?)\|(.+?)\}/;
+let done = new Set(store.get("kanji-done", []));
+const state = { tab: store.get("kanji-tab", "all"), q: "", undone: false };
+const HOW = { kaki: "太字のカタカナを漢字に直す", yomi: "下線の漢字の読みを答える", pair: "対になる語（↔ 対義語・≒ 類義語）を答える" };
+
+function key(sec, it){ return sec.type === "pair" ? `${sec.id}-${it[0]}` : `${sec.id}-${it[0]}`; }
+function rowHTML(sec, it){
+  const k = key(sec, it), d = done.has(k);
+  const chk = (label) => `<td class="n"><label><input type="checkbox" data-k="${esc(k)}" ${d ? "checked" : ""} aria-label="${esc(label)}を覚えた">${esc(label)}</label></td>`;
+  if (sec.type === "pair") {
+    const [a, r, b, m] = it;
+    return `<tr class="p${d ? " done" : ""}">${chk("")}<td class="pw">${esc(a)}</td><td class="rel">${r}</td><td class="a"><mark>${esc(b)}</mark></td><td class="m">${esc(m)}</td></tr>`
+      .replace(`<td class="pw">`, `<td class="q pw">`);
+  }
+  const [no, s, m, note] = it;
+  const [, kanji, kana] = s.match(RE);
+  const q = sec.type === "yomi" ? s.replace(RE, `<u>${esc(kanji)}</u>`) : s.replace(RE, `<b>${esc(kana)}</b>`);
+  const ans = sec.type === "yomi" ? kana : kanji;
+  return `<tr class="${d ? "done" : ""}">${chk((sec.prefix || "") + no)}<td class="q">${q}</td><td class="a"><mark>${esc(ans)}</mark></td><td class="m">${esc(m)}${note ? `<span class="note">※${esc(note)}</span>` : ""}</td></tr>`;
+}
+function text(sec, it){ return it.join(" "); }
+
+function render(){
+  $("#tabs").innerHTML = [{id:"all",name:"すべて"}, ...SECTIONS].map(s =>
+    `<button data-t="${s.id}" aria-pressed="${s.id === state.tab}">${esc(s.name)}</button>`).join("");
+  const q = state.q.trim();
+  let total = 0, html = "";
+  for (const sec of SECTIONS) {
+    if (state.tab !== "all" && state.tab !== sec.id) continue;
+    const items = sec.items.filter(it => (!state.undone || !done.has(key(sec, it))) && (!q || text(sec, it).includes(q)));
+    if (!items.length) continue;
+    total += items.length;
+    const head = sec.type === "pair"
+      ? `<tr><th></th><th>語</th><th></th><th>答え</th><th>意味</th></tr>`
+      : `<tr><th>No.</th><th>問題</th><th>答え</th><th>意味</th></tr>`;
+    html += `<h2>${esc(sec.name)}<small>${esc(sec.range)}</small></h2><p class="how">${HOW[sec.type]}</p>
+      <table><thead>${head}</thead><tbody>${items.map(it => rowHTML(sec, it)).join("")}</tbody></table>`;
+  }
+  $("#out").innerHTML = html || `<p class="empty">該当する問題はありません</p>`;
+  const all = SECTIONS.reduce((n, s) => n + s.items.length, 0);
+  $("#count").textContent = `${total} 問を表示（全 ${all} 問・チェック済み ${done.size} 問）`;
+}
+$("#tabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-t]"); if (!b) return;
+  state.tab = b.dataset.t; store.set("kanji-tab", state.tab); render(); scrollTo(0, 0);
+});
+$("#q").addEventListener("input", e => { state.q = e.target.value; render(); });
+$("#undone").addEventListener("click", e => {
+  state.undone = !state.undone; e.target.setAttribute("aria-pressed", state.undone); render();
+});
+$("#out").addEventListener("change", e => {
+  const k = e.target.dataset.k; if (!k) return;
+  e.target.checked ? done.add(k) : done.delete(k);
+  store.set("kanji-done", [...done]);
+  e.target.closest("tr").classList.toggle("done", e.target.checked);
+  $("#count").textContent = $("#count").textContent.replace(/チェック済み \d+/, `チェック済み ${done.size}`);
+});
+$("#out").addEventListener("click", e => {
+  const m = e.target.closest("mark");
+  if (m && document.body.classList.contains("sheet")) m.classList.toggle("open");
+});
+const sheetBtn = $("#sheetBtn");
+function setSheet(on){
+  document.body.classList.toggle("sheet", on);
+  sheetBtn.setAttribute("aria-pressed", on);
+  document.querySelectorAll("mark.open").forEach(m => m.classList.remove("open"));
+  store.set("kanji-sheet", on);
+}
+sheetBtn.addEventListener("click", () => setSheet(!document.body.classList.contains("sheet")));
+if (!SECTIONS.some(s => s.id === state.tab)) state.tab = "all";
+if (store.get("kanji-sheet", false)) setSheet(true);
+render();
+</script>
+</body>
+</html>
