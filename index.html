@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>【1年2学期期末テスト範囲】漢字まとめ｜書き取り・読み取り 601〜800</title>
+<title>【1年2学期期末テスト範囲】漢字・語彙まとめ｜書き取り・慣用句・カタカナ語</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@700;900&display=swap" rel="stylesheet">
@@ -59,6 +59,8 @@ td.a{width:8.5em;font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-
 td.m{width:34%;font-size:.85rem}
 td.m .note{display:block;color:var(--sub);font-size:.78rem}
 .q b{font-weight:900;color:var(--red);letter-spacing:.02em}
+.q b.blank{color:var(--accent);letter-spacing:.1em}
+td.a.im{width:auto;font-family:inherit;font-weight:700;font-size:.92rem}
 .q u{text-decoration:none;border-bottom:2px solid var(--red);font-weight:700}
 .pw{font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:900;font-size:1.1rem}
 .rel{color:var(--accent);font-weight:900;text-align:center;width:2.4em}
@@ -86,20 +88,21 @@ body.sheet mark.open{background:linear-gradient(transparent 55%,var(--marker) 55
 </head>
 <body>
 <header class="top">
-  <div class="bar"><h1 class="brand"><small>【1年2学期期末テスト範囲】</small>漢字まとめ（書き取り・読み取り）</h1></div>
+  <div class="bar"><h1 class="brand"><small>【1年2学期期末テスト範囲】</small>漢字・語彙まとめ</h1></div>
   <nav class="tabs" id="tabs"></nav>
 </header>
 <main>
   <div class="tools">
     <button class="chip sheetbtn" id="sheetBtn" aria-pressed="false">赤シート</button>
     <button class="chip" id="undone" aria-pressed="false">未チェックだけ</button>
-    <input type="search" id="q" placeholder="漢字・読み・意味で検索">
+    <input type="search" id="q" placeholder="漢字・語句・意味で検索">
   </div>
   <p class="hint">赤シートをオンにすると答えが隠れます。隠れた所をタップすると見えます。覚えた問題は番号の横にチェック。</p>
   <p class="count" id="count"></p>
   <div id="out"></div>
 </main>
 <script src="data.js"></script>
+<script src="data2.js"></script>
 <script>
 const $ = s => document.querySelector(s);
 const store = {
@@ -110,7 +113,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 const RE = /\{(.+?)\|(.+?)\}/;
 let done = new Set(store.get("kanji-done", []));
 const state = { tab: store.get("kanji-tab", "all"), q: "", undone: false };
-const HOW = { kaki: "太字のカタカナを漢字に直す", yomi: "下線の漢字の読みを答える", pair: "対になる語（↔ 対義語・≒ 類義語）を答える" };
+const HOW = { kaki: "太字のカタカナを漢字に直す", yomi: "下線の漢字の読みを答える", pair: "対になる語（↔ 対義語・≒ 類義語）を答える", kan: "□に入る語を答える", imi: "下線の語の意味を答える", sel: "［　］の中から正しいほうを選ぶ" };
 
 function key(sec, it){ return sec.type === "pair" ? `${sec.id}-${it[0]}` : `${sec.id}-${it[0]}`; }
 function rowHTML(sec, it){
@@ -120,6 +123,22 @@ function rowHTML(sec, it){
     const [a, r, b, m] = it;
     return `<tr class="p${d ? " done" : ""}">${chk("")}<td class="pw">${esc(a)}</td><td class="rel">${r}</td><td class="a"><mark>${esc(b)}</mark></td><td class="m">${esc(m)}</td></tr>`
       .replace(`<td class="pw">`, `<td class="q pw">`);
+  }
+  if (sec.type === "kan") {
+    const [no, s, m] = it;
+    const ans = s.match(/\{(.+?)\}/)[1];
+    const q = esc(s).replace(/\{(.+?)\}/, `<b class="blank">${"□".repeat(Math.min(ans.length, 4))}</b>`);
+    return `<tr class="${d ? "done" : ""}">${chk((sec.prefix || "") + no)}<td class="q">${q}</td><td class="a"><mark>${esc(ans)}</mark></td><td class="m">${esc(m)}</td></tr>`;
+  }
+  if (sec.type === "sel") {
+    const [no, s, ans, m] = it;
+    return `<tr class="${d ? "done" : ""}">${chk((sec.prefix || "") + no)}<td class="q">${esc(s)}</td><td class="a"><mark>${esc(ans)}</mark></td><td class="m">${esc(m)}</td></tr>`;
+  }
+  if (sec.type === "imi") {
+    const [no, s] = it;
+    const [, w, mean] = s.match(RE);
+    const q = esc(s).replace(/\{(.+?)\|(.+?)\}/, `<u>${esc(w)}</u>`);
+    return `<tr class="i${d ? " done" : ""}">${chk((sec.prefix || "") + no)}<td class="q">${q}</td><td class="a im" colspan="2"><mark>${esc(mean)}</mark></td></tr>`;
   }
   const [no, s, m, note] = it;
   const [, kanji, kana] = s.match(RE);
@@ -141,6 +160,8 @@ function render(){
     total += items.length;
     const head = sec.type === "pair"
       ? `<tr><th></th><th>語</th><th></th><th>答え</th><th>意味</th></tr>`
+      : sec.type === "imi"
+      ? `<tr><th>No.</th><th>問題</th><th colspan="2">意味（答え）</th></tr>`
       : `<tr><th>No.</th><th>問題</th><th>答え</th><th>意味</th></tr>`;
     html += `<h2>${esc(sec.name)}<small>${esc(sec.range)}</small></h2><p class="how">${HOW[sec.type]}</p>
       <table><thead>${head}</thead><tbody>${items.map(it => rowHTML(sec, it)).join("")}</tbody></table>`;
